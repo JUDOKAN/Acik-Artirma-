@@ -1,0 +1,131 @@
+-- database: ../../../../Downloads/movie.db
+
+SELECT * FROM directors;
+
+-- database: ./movie.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM movies;
+
+SELECT  title, release_date
+FROM movies
+WHERE release_date > '2016';
+
+SELECT  title, release_date
+FROM movies
+WHERE release_date > '2008' AND release_date < '2010';
+
+SELECT vote_average, title
+FROM movies
+ORDER BY vote_average;
+
+SELECT vote_average, title
+FROM movies
+ORDER BY vote_average DESC;
+
+SELECT * FROM movies
+ORDER BY RANDOM()
+LIMIT 1;
+
+SELECT title, release_date FROM movies
+WHERE release_date > '2008' AND release_date < '2010'
+ORDER BY RANDOM()
+LIMIT 3;
+
+SELECT * FROM movies
+WHERE budget > 30000000 AND director_id = 5417;
+
+SELECT * FROM movies
+WHERE release_date>2015 OR vote_average>8;
+
+SELECT * FROM movies
+WHERE NOT budget = 0;
+
+SELECT * FROM movies
+WHERE title LIKE 'Harry Potter%';
+
+SELECT * FROM movies
+WHERE tagline LIKE '%programmer%';
+
+SELECT * FROM movies
+WHERE tagline IS NOT NULL;
+
+
+SELECT * FROM movies
+LIMIT 10;
+
+
+SELECT * FROM movies
+LIMIT 10 OFFSET 100 ;
+
+SELECT movies.title, directors.name
+FROM movies
+JOIN directors ON movies.director_id = directors.id
+WHERE directors.name = 'Christopher Nolan';
+
+SELECT title, vote_average
+FROM movies
+ORDER BY vote_average DESC
+LIMIT 5;
+
+SELECT strftime('%Y', release_date) AS year, COUNT(*) AS movie_count
+FROM movies
+GROUP BY year
+ORDER BY year;
+
+SELECT title, budget
+FROM movies
+ORDER BY budget DESC
+LIMIT 1;
+
+SELECT directors.name, COUNT(movies.id) AS number_of_movies
+FROM directors
+JOIN movies ON directors.id = movies.director_id
+GROUP BY directors.name
+ORDER BY number_of_movies DESC;
+
+SELECT title, vote_average
+FROM movies
+WHERE title LIKE '%Love%'
+ORDER BY vote_average DESC
+LIMIT 3;
+
+SELECT title, vote_count
+FROM movies
+ORDER BY vote_count DESC
+LIMIT 10;
+
+SELECT title, release_date
+FROM movies
+ORDER BY release_date ASC
+LIMIT 5;
+
+SELECT title, release_date, vote_average
+FROM movies
+WHERE release_date > '2010' AND vote_average > 7
+ORDER BY vote_average DESC;
+
+SELECT title, tagline
+FROM movies
+WHERE tagline IS NOT NULL AND tagline != ''
+ORDER BY RANDOM()
+LIMIT 10;
+
+SELECT title, budget, vote_average
+FROM movies
+WHERE budget > 0
+ORDER BY budget ASC, vote_average DESC
+LIMIT 10;
+
+SELECT title, release_date
+FROM movies
+WHERE title LIKE '%Man%' AND release_date > '2010';
+
+SELECT title, release_date, budget
+FROM movies
+WHERE budget = 0;
+
+SELECT title, release_date
+FROM movies
+WHERE strftime('%Y', release_date) = '2015';
